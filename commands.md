@@ -1,6 +1,56 @@
-Generate a new ssh key:
-
+## Generate a new ssh key:
 ```
 ssh-keygen -t ed25519 -f ~/.ssh/<KEY_NAME> -C "some comment (optional)"
+```
+
+## Create a non root user
+- Create a `.sh` file inside `/home` directory with the contents to create a new 'non root' user;
+
+- Execute the file to create the non root user;
+
+- Log out and log in with the non root user. If necessary, use the `-i` option to specify which ssh file should be used to authenticate;
+```
+ssh -i ~/.ssh/NEW_SSH_FILE <NEW_USERNAME>@<SERVER_IP>
+```
+
+## Clone the repository from GitHub
+- Clone the repository from GitHub to the new server. It will be necessary to create a new ssh key inside the server and add it to GitHub. If the 'permission denied' error arises, use the following commands to create a config file and try again;
+```
+# Check if the config file already exists. If not:
+
+touch ~/.ssh/config
+
+# Place it inside the new config file:
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/<NEW_SSH_FILE>
+```
+
+## Disable login via root user
+- To disable login in our server via root user, we can edit the `PermitRootLogin` setting in the `sshd_config` file. This file is usually located in `/etc/ssh`:
+```
+vim /etc/ssh/sshd_config
+```
+- find the `PermitRootLogin no` setting and change it to `PermitRootLogin no`;
+- for the changes to be applied, restart the ssh service:
+```
+sudo systemctl restart ssh
+```
+
+## Set a new firewall
+- get the public IP of your computer:
+```
+curl ifconfig.me
+```
+
+- Set the following inbound rules on the firewall. If others are going to access the server, their IP's have to be added in the sources. After setting it up, only the listed IP's will be able to connect to the server.
+```
+Type      Protocol    Port    Sources
+SSH	      TCP	      22	  <YOUR_MACHINE_PUBLIC_IP>  # ssh connection
+HTTP	  TCP	      80	  <YOUR_MACHINE_PUBLIC_IP>  # standard http
+HTTPS	  TCP	      443	  <YOUR_MACHINE_PUBLIC_IP>
+Custom	  TCP	      5432	  <YOUR_MACHINE_PUBLIC_IP>  # postgresql
+Custom	  TCP	      5678	  <YOUR_MACHINE_PUBLIC_IP>  # n8n
 ```
 
