@@ -45,12 +45,14 @@ curl ifconfig.me
 ```
 
 - Set the following inbound rules on the firewall. If others are going to access the server, their IP's have to be added in the sources. After setting it up, only the listed IP's will be able to connect to the server.
-```
-Type      Protocol    Port    Sources
-SSH	      TCP	      22	  <YOUR_MACHINE_PUBLIC_IP>  # ssh connection
-HTTP	  TCP	      80	  <YOUR_MACHINE_PUBLIC_IP>  # standard http
-HTTPS	  TCP	      443	  <YOUR_MACHINE_PUBLIC_IP>
-Custom	  TCP	      5432	  <YOUR_MACHINE_PUBLIC_IP>  # postgresql
-Custom	  TCP	      5678	  <YOUR_MACHINE_PUBLIC_IP>  # n8n
-```
 
+| Type      | Protocol | Port       | Sources |
+|-----------|-------|--------------|--------|
+| SSH      | TCP    | 22 | <YOUR_MACHINE_PUBLIC_IP>  # ssh connection |
+| HTTP     | TCP    | 80 | <YOUR_MACHINE_PUBLIC_IP>  # standard http |
+| HTTPS     | TCP    | 443 | <YOUR_MACHINE_PUBLIC_IP> |
+| Custom     | TCP    | 5432 | <YOUR_MACHINE_PUBLIC_IP>  # postgresql |
+| Custom     | TCP    | 5678 | <YOUR_MACHINE_PUBLIC_IP>  # n8n |
+
+## Installing a proxy
+We can use Nginx to work as a proxy for us. The docker-compose file was updated to have a new container running on the same network as the n8n container. We also created a new file called `n8n/nginx.conf`, and this is the file where we set the proxy to forward the requests to n8n container. As the Nginx is the one who is going to listen to the requests on ports 80 and 443, we don't have to expose the ports `5678:5678` in n8n container anymore. 

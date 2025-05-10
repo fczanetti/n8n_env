@@ -6,8 +6,8 @@ services:
     env_file: .env
     volumes:
       - n8n_data:/home/node/.n8n
-    ports:
-      - 5678:5678
+    # ports:
+    #   - 5678:5678
     depends_on:
       database:
         condition: service_healthy
@@ -26,6 +26,17 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    
+  nginx:
+    image: nginx:1.27.0
+    restart: no
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - n8n
 
 volumes:
   n8n_data:
