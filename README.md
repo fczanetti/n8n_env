@@ -68,12 +68,12 @@ Set up a secure, persistent, and scalable environment on a remote server (e.g., 
 
 ## ✅ Completion Checklist
 
-- [ ] SSH access is restricted and secure.
-- [ ] A non-root user is used for all administrative tasks.
-- [ ] Docker and Docker Compose are correctly installed.
-- [ ] n8n runs in a container with persistent storage.
+- [x] SSH access is restricted and secure.
+- [x] A non-root user is used for all administrative tasks.
+- [x] Docker and Docker Compose are correctly installed.
+- [x] n8n runs in a container with persistent storage.
 - [ ] HTTPS access is functional using a custom domain.
-- [ ] Firewall and intrusion prevention are in place.
+- [x] Firewall and intrusion prevention are in place.
 - [ ] Backups are configured or scheduled.
 
 ---
