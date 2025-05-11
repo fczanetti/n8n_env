@@ -66,6 +66,12 @@ Set up a secure, persistent, and scalable environment on a remote server (e.g., 
 
 ---
 
+### 7. Implement monitoring board with Grafana (extra)
+
+- Fill here with step by step;
+
+---
+
 ## ✅ Completion Checklist
 
 - [x] SSH access is restricted and secure.
@@ -75,6 +81,7 @@ Set up a secure, persistent, and scalable environment on a remote server (e.g., 
 - [ ] HTTPS access is functional using a custom domain.
 - [x] Firewall and intrusion prevention are in place.
 - [ ] Backups are configured or scheduled.
+- [ ] Monitoring with Grafana.
 
 ---
 
