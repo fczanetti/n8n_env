@@ -21,12 +21,16 @@ ssh -i ~/.ssh/NEW_SSH_FILE <NEW_USERNAME>@<SERVER_IP>
 
 ## Clone the repository from GitHub
 - Clone the repository from GitHub to the new server. It will be necessary to create a new ssh key inside the server and add it to GitHub. If the 'permission denied' error arises, use the following commands to create a config file and try again;
+- Check if the connection with GitHub via ssh is OK:
 ```
-# Check if the config file already exists. If not:
-
+ssh -T git@github.com
+```
+- Check if the config file already exists. If not:
+```
 touch ~/.ssh/config
-
-# Place it inside the new config file:
+```
+- Place it inside the new config file:
+```
 Host github.com
   HostName github.com
   User git
