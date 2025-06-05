@@ -78,7 +78,8 @@ Set up a secure, persistent, and scalable environment on a remote server (e.g., 
 - [x] A non-root user is used for all administrative tasks.
 - [x] Docker and Docker Compose are correctly installed.
 - [x] n8n runs in a container with persistent storage.
-- [ ] HTTPS access is functional using a custom domain.
+- [ ] HTTPS access. 
+- [ ] Use a custom domain.
 - [x] Firewall and intrusion prevention are in place.
 - [ ] Backups are configured or scheduled.
 - [ ] Monitoring with Grafana.
